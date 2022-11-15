@@ -2,19 +2,16 @@ version: "3"
 services:
 
   rstudio:
-    image: rstudio_bstates:latest
+    image: rstudio_neonatal_dfc:latest
     build:
       context: ./rstudio
     ports:
       - "8787:8787"
     volumes:
           - "~/.ssh:/home/me/.ssh"
-          - ".:/home/me/brainStates"
-          - "./src:/home/me/brainStates/src"
-          - "./data:/home/me/brainStates/data"
-          - "./report:/home/me/brainStates/report"
+          - ".:/home/me/neonatal_dfc"
+          - "./src:/home/me/neonatal_dfc/src"
+          - "./data:/home/me/neonatal_dfc/data"
+          - "./report:/home/me/neonatal_dfc/report"
     environment:
-          - USER=me
           - PASSWORD=letmein
-          - GIT_USER="lucasfr"
-          - GIT_EMAIL="lucas.franca@kcl.ac.uk"
