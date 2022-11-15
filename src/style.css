@@ -1,0 +1,11 @@
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+z-index: 2;
+color: #fff;
+font-weight: bold;
+background-color: #4eb3d3;
+border-color: #4eb3d3;
+}
+
+body {
+  text-align: justify
+}
