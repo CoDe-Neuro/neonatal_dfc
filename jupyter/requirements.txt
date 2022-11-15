@@ -1,0 +1,12 @@
+numpy
+matplotlib
+scipy
+pandas
+scikit-learn
+seaborn
+pytest
+plotly
+pyarrow
+feather-format
+h5py
+nilearn
