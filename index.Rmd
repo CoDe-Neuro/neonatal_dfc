@@ -490,12 +490,12 @@ grViz(diagram = "digraph flowchart {
 }
   
   [1]: 'Initial sample from dHCP release 3 (N = 809)'
-  [2]: 'Remove poor quality scans (radiological scores 4 and 5) (N = 715)'    
-  [3]: 'Keep one participant for twins/triplets (participant with fewer motion outliers was selected) (N = 668)'   
-  [4]: 'Remove sessions with excessive motion (more than 10% motion outliers,defined as FD > 75th centile + 1.5*IQR) (N = 466)' 
-  [5]: 'Remove sessions not scanned at term equivalent age (PMA at scan < 37 weeks) (N = 395)'
-  [6]: 'Remove duplicate sessions for a single individual (N = 494)'   
-  [7]: 'Remove scans with one or more regions with less than 5 voxels  (N = 390)'
+  [2]: 'Remove sessions not scanned at term equivalent age (PMA at scan < 37 weeks) (N = 657)'
+  [3]: 'Remove scans with incidental findings (radiological scores 4 and 5) (N = 600)'    
+  [4]: 'Keep one participant for twins/triplets (participant with fewer motion outliers was selected) (N = 574)'   
+  [5]: 'Remove sessions with excessive motion (more than 10% motion outliers,defined as FD > 75th centile + 1.5*IQR) (N = 395)' 
+  [6]: 'Remove duplicate sessions for a single individual (N = 391)'   
+  [7]: 'Remove scans with one or more regions with fewer than 5 voxels  (N = 390)'
   ")
 ```
 
