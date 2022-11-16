@@ -1,0 +1,530 @@
+---
+title: 'Neonatal brain dynamic functional connectivity and its association with 18-month neurodevelopment'
+authors:
+  - Lucas França, Institution One
+  - Dafnis Batallé, Institution Two
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  bookdown::html_document2:
+    number_sections: false
+    toc: true
+    toc_float: true
+    self_contained: no
+    css: 'src/style.css'
+  bookdown::word_document2:
+    number_sections: false
+bibliography: references.bib
+csl: harvard-cite-them-right-no-et-al.csl
+editor_options:
+  chunk_output_type: console
+params:
+  nPerms: 10000
+  seed: 42
+  clusNum: 6
+  clusTag: 'clus6'
+---
+
+```{r init_routines, include=FALSE}
+knitr::read_chunk('src/init_routines.R')
+```
+
+```{r libs, include=FALSE}
+```
+
+```{r ggset, include=FALSE}
+```
+
+```{r load}
+#| message = FALSE, 
+#| warning = FALSE, 
+#| include = FALSE, 
+#| cache = TRUE
+```
+
+
+```{r eval=FALSE, include=FALSE}
+data_tab <- readr::read_tsv(file = 'https://raw.githubusercontent.com/BioMedIA/dHCP-release-notes/master/supplementary_files/combined.tsv') %>% 
+  dplyr::select(participant_id, 
+                session_id, 
+                radiology_score) %>% 
+  dplyr::rename('sub' = 'participant_id', 
+                'ses' = 'session_id') %>% 
+  dplyr::mutate(ses = as.character(ses))
+
+temp <- dfm %>% 
+  dplyr::select(sub, ses, ttime, pma, ga, sex, cog_comp, motor_comp, language_comp, qchat_total, pt, motparam_fd_outlier_count) %>% 
+  dplyr::group_by(sub) %>% 
+  dplyr::summarise(pma = unique(pma), 
+                   ga = unique(ga), 
+                   sex = unique(sex), 
+                   ses = unique(ses),
+                   cog_comp = unique(cog_comp), 
+                   motor_comp = unique(motor_comp), 
+                   language_comp = unique(language_comp), 
+                   qchat_total = unique(qchat_total),
+                   pt = unique(pt), 
+                   motparam_fd_outlier_count = unique(motparam_fd_outlier_count)) %>% 
+  dplyr::mutate(sex = recode(sex, 'male' = 'Male', 'female' = 'Female'))
+
+temp$qchat_total[temp$qchat_total < 0] <- NA
+temp$cog_comp[temp$cog_comp < 0] <- NA
+temp$motor_comp[temp$motor_comp < 0] <- NA
+temp$language_comp[temp$language_comp < 0] <- NA
+
+tempfd <- temp %>% 
+    inner_join(data_tab) %>% 
+    mutate(finds = recode(radiology_score, '1' = 'No', '2' = 'Yes', '3' = 'Yes'))
+
+chisq.test(xtabs(formula = ~ sex + pt, data = temp))
+chisq.test(xtabs(formula = ~ finds + pt, data = tempfd))
+
+imd_tab <- readxl::read_xlsx(path = 'data/imd_pat.xlsx')
+
+names(imd_tab) <- c('participant_id', 'age_m', 'age_d', 'cor_age_m', 'cor_age_d', 'imd')
+
+imd_tab <- imd_tab %>% 
+  dplyr::rename('sub' = 'participant_id') %>% 
+  dplyr::mutate(age = age_m + (1/30*age_d), 
+                cor_age = cor_age_m + (1/30*cor_age_d)) %>% 
+  dplyr::select(sub, age, cor_age)
+
+temp <- temp %>% 
+  dplyr::left_join(imd_tab)
+  
+
+temp %>% 
+  dplyr::group_by(pt) %>% 
+  summarise(mean_cor_age = mean(cor_age, na.rm = TRUE),
+            sd_cor_age = sd(cor_age, na.rm = TRUE), 
+            mean_age = mean(age, na.rm = TRUE),
+            sd_age = sd(age, na.rm = TRUE), 
+            mean_cog = mean(cog_comp, na.rm = TRUE),
+            sd_cog = sd(cog_comp, na.rm = TRUE), 
+            mean_motor = mean(motor_comp, na.rm = TRUE),
+            sd_motor = sd(motor_comp, na.rm = TRUE), 
+            mean_language = mean(language_comp, na.rm = TRUE),
+            sd_language = sd(language_comp, na.rm = TRUE), 
+            mean_qchat = mean(qchat_total, na.rm = TRUE),
+            sd_qchat = sd(qchat_total, na.rm = TRUE)) %>% 
+  View()
+
+wilcox_test(cor_age ~ pt, data=temp, distribution = "exact")
+wilcox_test(age ~ pt, data=temp, distribution = "exact")
+wilcox_test(cog_comp ~ pt, data=temp, distribution = "exact")
+wilcox_test(motor_comp ~ pt, data=temp, distribution = "exact")
+wilcox_test(language_comp ~ pt, data=temp, distribution = "exact")
+wilcox_test(qchat_total ~ pt, data=temp, distribution = "exact")
+
+
+temp %>% 
+  filter(!is.na(cog_comp))  %>%
+  group_by(pt) %>% 
+  summarise(n_comp = length(sub))
+
+temp %>% 
+  filter(!is.na(qchat_total))  %>%
+  group_by(pt) %>% 
+  summarise(n_comp = length(sub))
+
+```
+
+
+```{r descStat}
+#| fig.align='center', 
+#| fig.height=6,
+#| fig.width=6.5,
+#| message=FALSE,
+#| warning=FALSE,
+#| echo=FALSE,
+#| dev='pdf',
+#| out.width='100%',
+#| fig.cap="Distribution of gestational age (GA) at birth and postmentrual age (PMA) at scan for the subjects selected for this study. These have been obtained as a sub sample from dHCP data release 3 according to the parameters defined in Supplementary materials S1."
+```
+
+```{r global_routines, include=FALSE}
+knitr::read_chunk('src/global_routines.R')
+```
+
+```{r modular_routines, include=FALSE}
+knitr::read_chunk('src/modular_routines.R')
+```
+
+
+
+```{r kop_calc, include=FALSE, cache=TRUE}
+```
+
+```{r}
+imd_tab <- readxl::read_xlsx(path = 'data/imd_pat.xlsx')
+names(imd_tab) <- c('sub', 'age_m', 'age_d', 'cor_age_m', 'cor_age_d', 'imd')
+
+kop_b <- dfm %>% 
+  dplyr::group_by(sub, 
+                  pma, 
+                  ga, 
+                  pt, 
+                  sex, 
+                  ensembleMetastab, 
+                  ensembleEntropy, 
+                  motparam_fd_outlier_count, 
+                  cog_comp, 
+                  motor_comp, 
+                  language_comp, 
+                  qchat_total) %>% 
+  dplyr::summarise(meanSync = mean(ensembleSync)) %>% 
+  dplyr::ungroup() %>%   
+  dplyr::left_join(imd_tab) %>% 
+  dplyr::mutate(age = age_m + (1/30*age_d), 
+                cor_age = cor_age_m + (1/30*cor_age_d))
+  
+
+kop_b$cog_comp[kop_b$cog_comp < 0] <- NA
+kop_b$motor_comp[kop_b$motor_comp < 0] <- NA
+kop_b$language_comp[kop_b$language_comp < 0] <- NA
+kop_b$qchat_total[kop_b$qchat_total < 0] <- NA
+
+
+kop_cog <- grouped_perm_glm(
+  kop_b, 
+  formla = meanSync ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + cog_comp + imd, 
+  var_to_perm = 'meanSync', 
+  permNum = params$nPerms, 
+  seed = params$seed)
+
+kop_motor <- grouped_perm_glm(
+  kop_b, 
+  formla = meanSync ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + motor_comp + imd, 
+  var_to_perm = 'meanSync', 
+  permNum = params$nPerms, 
+  seed = params$seed)
+
+kop_language <- grouped_perm_glm(
+  kop_b, 
+  formla = meanSync ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + language_comp + imd, 
+  var_to_perm = 'meanSync', 
+  permNum = params$nPerms, 
+  seed = params$seed)
+
+kop_qchat <- grouped_perm_glm(
+  kop_b, 
+  formla = meanSync ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + qchat_total + imd, 
+  var_to_perm = 'meanSync', 
+  permNum = params$nPerms, 
+  seed = params$seed)
+
+kop_comp <- dplyr::bind_rows(kop_cog %>% 
+                               dplyr::filter(term == 'cog_comp'), 
+                             kop_motor %>% 
+                               dplyr::filter(term == 'motor_comp'),
+                             kop_language %>% 
+                               dplyr::filter(term == 'language_comp'),
+                             kop_qchat %>% 
+                               dplyr::filter(term == 'qchat_total')) %>% 
+  dplyr::mutate(pp.cor = p.adjust(p.perm, 
+                                  method = 'fdr', 
+                                  n = length(p.perm))) %>% 
+  dplyr::mutate(p.adj = as.character(signif(p.perm, 3))) %>% 
+  dplyr::mutate(p.adj = glue::glue('p = {p.adj}')) %>% 
+  dplyr::mutate(p.adj = dplyr::recode(p.adj, 'p = 0'='p < 0.001'))
+
+sync_res <- glm(data = kop_b, formula = meanSync ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + imd)
+qchat_res <- glm(data = kop_b, formula = qchat_total ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + imd)
+
+fit_godness <- tibble::tibble(sync = sync_res$residuals, 
+               qchat = qchat_res$residuals) %>% 
+    lm(., formula = sync ~ qchat) %>% 
+    summary()
+
+R2 <- fit_godness$r.squared
+
+kop_qchat_fig <- tibble::tibble(sync = sync_res$residuals, 
+       qchat = qchat_res$residuals, 
+       sync_res$model) %>% 
+  dplyr::mutate(pt = dplyr::if_else(ga < 37, 'Preterm', 'Term')) %>% 
+  dplyr::mutate(pt = relevel(as.factor(pt), ref = 'Term')) %>% 
+  
+  ggplot2::ggplot(aes(x = qchat, y = sync)) + 
+    geom_point(aes(fill = pt, 
+                   colour = pt), 
+                   size = 3, 
+                   pch = 21, 
+                   size = 2, 
+                   alpha = 0.4) + 
+    scale_fill_manual(values = scales2[c(2,10)], 
+                    name = element_blank()) + 
+    scale_colour_manual(values = scales2[c(2,10)], 
+                    name = element_blank()) + 
+    #geom_abline(slope = kop_qchat$estimate[7]) + 
+    stat_poly_line(colour = 'black', se = FALSE) + 
+    stat_poly_eq(p.digits = 3, 
+                 
+                 aes(label = paste(after_stat(rr.label), "*\" - \"*",
+                                   after_stat(p.value.label), sep = ""))) + 
+    xlab('Res(Q-CHAT total)') + 
+    ylab('Res(Mean sync.)') + 
+    theme(legend.position = c(0.9, 0.9), 
+          legend.background = element_blank(), 
+          text = element_text(size = 24))
+```
+
+
+
+```{r kopmet, include=FALSE}
+kop_mean <- dfm %>% 
+  dplyr::group_by(sub, pma, ga, pt, ensembleMetastab, ensembleEntropy) %>% 
+  dplyr::summarise(meanSync = mean(ensembleSync))
+```
+
+
+
+```{r kopfig}
+#| echo=FALSE,
+#| fig.align='center',
+#| fig.height=10,
+#| fig.width=14,
+#| message=FALSE,
+#| warning=FALSE, 
+#| dev='pdf',
+#| fig.cap="Kuramoto Order Parameter (KOP) measures - a) mean KOP, b) metastability, and c) entropy. There is no correlation between these measures and PMA, nevertheless, both metastability b) and entropy c) feature Cohen's D that suggest a medium effect size. Such results indicate a connection between prematurity and brain synchronicity."
+```
+
+```{r eval=FALSE, include=FALSE}
+kop <- dfm %>% 
+  dplyr::filter(pt == 'Term') %>% 
+  dplyr::mutate(ca = 7*(pma - ga)) %>% 
+  dplyr::group_by(sub, 
+                  pma, 
+                  ga, 
+                  ca, 
+                  sex,  
+                  ensembleMetastab, 
+                  ensembleEntropy, 
+                  motparam_fd_outlier_count) %>% 
+  dplyr::summarise(meanSync = mean(ensembleSync)) %>% 
+  dplyr::ungroup()
+
+
+  meanSync_glm <- grouped_perm_glm(
+  kop, 
+  formla = meanSync ~ ca + sex + pma + motparam_fd_outlier_count, 
+  var_to_perm = 'meanSync', 
+  permNum = params$nPerms, 
+  seed = params$seed) %>% 
+  dplyr::mutate(p.adj = as.character(signif(p.perm, 3))) %>% 
+  dplyr::mutate(p.adj = glue::glue('p = {p.adj}')) %>% 
+  dplyr::mutate(p.adj = dplyr::recode(p.adj, 'p = 0'='p < 0.001'))
+
+metastab_glm <- grouped_perm_glm(
+  kop, 
+  formla = ensembleMetastab ~ ca + sex + pma + motparam_fd_outlier_count, 
+  var_to_perm = 'ensembleMetastab', 
+  permNum = params$nPerms, 
+  seed = params$seed) %>% 
+  dplyr::mutate(p.adj = as.character(signif(p.perm, 3))) %>% 
+  dplyr::mutate(p.adj = glue::glue('p = {p.adj}')) %>% 
+  dplyr::mutate(p.adj = dplyr::recode(p.adj, 'p = 0'='p < 0.001'))
+
+entropy_glm <- grouped_perm_glm(
+  kop, 
+  formla = ensembleEntropy ~ ca + sex + pma + motparam_fd_outlier_count, 
+  var_to_perm = 'ensembleEntropy', 
+  permNum = params$nPerms, 
+  seed = params$seed) %>% 
+  dplyr::mutate(p.adj = as.character(signif(p.perm, 3))) %>% 
+  dplyr::mutate(p.adj = glue::glue('p = {p.adj}')) %>% 
+  dplyr::mutate(p.adj = dplyr::recode(p.adj, 'p = 0'='p < 0.001'))
+
+
+stats::p.adjust(c(meanSync_glm$p.perm[4], metastab_glm$p.perm[4], entropy_glm$p.perm[4]), 
+                 method = 'fdr', 
+                 n = 3)
+
+stats::p.adjust(c(meanSync_glm$p.perm[2], metastab_glm$p.perm[2], entropy_glm$p.perm[2]), 
+                 method = 'fdr', 
+                 n = 3)
+```
+
+```{r plotBrains}
+#| fig.align='center', 
+#| fig.height=30,
+#| fig.width=24,
+#| message=FALSE,
+#| dev='pdf',
+#| warning=FALSE,
+#| echo=FALSE,
+#| fig.cap="Brain states in neonates at resting state. a) LEiDA vectors for each of the eight brain states previously defined in this study. b) Representation of LEiDA on brain surfaces."
+```
+
+```{r stateRecode, include=FALSE}
+```
+
+```{r measuresStates, echo=FALSE}
+#| fig.align='center', 
+#| fig.height=12,
+#| fig.width=8,
+#| dev='pdf',
+#| message=FALSE,
+#| warning=FALSE,
+#| echo=FALSE,
+#| eval=TRUE,
+#| fig.cap="."
+```
+
+```{r state_glms, echo=FALSE}
+#| echo=FALSE, 
+#| fig.height=10, 
+#| fig.width=8, 
+#| dev='pdf',
+#| message=FALSE, 
+#| warning=FALSE, 
+#| eval=TRUE,
+#| fig.cap="Correlograms with each covariate impact for the linear models. a) Correlation between postnatal days; and PMA (in term-born neonates) and prematurity with fractional occupancy (FO). b) Correlation between postnatal days; and PMA (in term-born neonates) and prematurity with dwelling time c) Prematurity effecton FO, DT, mean KOP and metastability. Only values surviving multiple comparison's correction (False Discovery Rate - Benjamini-Hochberg) are shown.",
+#| cache = TRUE
+```
+
+```{r measuresStatesPT, echo=FALSE}
+#| fig.align='center', 
+#| fig.height=12,
+#| fig.width=8,
+#| dev='pdf',
+#| message=FALSE,
+#| warning=FALSE,
+#| echo=FALSE,
+#| eval=TRUE,
+#| fig.cap="."
+```
+
+```{r phocs, echo=FALSE}
+#| fig.align='center', 
+#| fig.height=10,
+#| fig.width=10,
+#| dev='pdf',
+#| message=FALSE,
+#| warning=FALSE,
+#| echo=FALSE,
+#| eval=TRUE,
+#| fig.cap="."
+```
+
+```{r transitions, echo=FALSE}
+#| echo=FALSE, 
+#| message=FALSE, 
+#| warning=FALSE, 
+#| eval=TRUE, 
+#| cache=TRUE
+```
+
+```{r meanTrans, echo=FALSE}
+#| echo=FALSE, 
+#| fig.height=12, 
+#| fig.width=8, 
+#| dev='pdf',
+#| message=FALSE, 
+#| warning=FALSE, 
+#| eval=TRUE,
+#| fig.cap="Mean transition likelihood for individuals born at term."
+```
+
+```{r modelsTerm, echo=FALSE}
+#| echo=FALSE, 
+#| fig.height=15, 
+#| fig.width=12, 
+#| dev='pdf',
+#| eval=TRUE,
+#| message=FALSE, 
+#| warning=FALSE, 
+#| fig.cap="Modular analysis of neonatal brain dynamics. a) Eight brain states defined via K-Means clustering and correlation between each clinical feature of interest (Born Preterm, PMA, PND) and metric (Mean KOP, Metastability, FO, DT). FO and DT show correlations with prematurity and PMA for several brain states - these have higher occurrence with increased PMA for state 4 (and lower FO for state 2). FO also shows correlation with PND - with higher measures for states 0, 2, and 5 for increased PND. b) Correlation between state transitions probabilities and PMA - with positive correlation with transitions to state 4 from states 0, 2, and 5, and dwelling states. c) Correlation between state transition probabilities and PND - which feature positive correlation with a dwelling state 4 and transition from state 3 to state 0; and a negative correlation with transitions from state 0 to state 3. e) Correlation between state transition probabilities and prematurity - featuring positive correlations for a dwelling state 6; and negative correlations for transitions of the states 3 to 7, 5 to 7, and 6 to 1. *GLMI (including 276 were term-born babies): y ~ motion artefact + Sex + PMA + PND **GLM2 (including 328 babies, 276 term-born and 52 preterm-born): y ~ Motion Artefact + Sex + PMA + Born Preterm"
+```
+
+```{r eval=FALSE, include=FALSE}
+# Although KOP measures do not correlate with brain development (PMA), as previously shown, they do relate to prematurity. We have found a small effect size for mean KOP with Cohen's D = `r chd_kop$D.adj` (`r chd_kop$p.adj`); as well as, a medium effect for the metastability D = `r chd_metastab$D.adj` (`r chd_metastab$p.adj`) and for entropy D = `r chd_entr$D.adj` (`r chd_entr$p.adj`), suggesting changes to global brain dynamics (synchronisation) as an effect of prematurity. Figure \@ref(fig:kopfig) shows the relationship between KOP metrics and prematurity.
+```
+
+```{r modelsAll, echo=FALSE}
+#| echo=FALSE, 
+#| fig.height=10, 
+#| fig.width=12, 
+#| dev='pdf',
+#| eval=TRUE,
+#| message=FALSE, 
+#| warning=FALSE, 
+#| fig.cap="Modular analysis of neonatal brain dynamics. a) Eight brain states defined via K-Means clustering and correlation between each clinical feature of interest (Born Preterm, PMA, PND) and metric (Mean KOP, Metastability, FO, DT). FO and DT show correlations with prematurity and PMA for several brain states - these have higher occurrence with increased PMA for state 4 (and lower FO for state 2). FO also shows correlation with PND - with higher measures for states 0, 2, and 5 for increased PND. b) Correlation between state transitions probabilities and PMA - with positive correlation with transitions to state 4 from states 0, 2, and 5, and dwelling states. c) Correlation between state transition probabilities and PND - which feature positive correlation with a dwelling state 4 and transition from state 3 to state 0; and a negative correlation with transitions from state 0 to state 3. e) Correlation between state transition probabilities and prematurity - featuring positive correlations for a dwelling state 6; and negative correlations for transitions of the states 3 to 7, 5 to 7, and 6 to 1. *GLMI (including 276 were term-born babies): y ~ motion artefact + Sex + PMA + PND **GLM2 (including 328 babies, 276 term-born and 52 preterm-born): y ~ Motion Artefact + Sex + PMA + Born Preterm"
+```
+
+```{r bayley, echo=FALSE}
+#| echo=FALSE, 
+#| fig.height=5, 
+#| fig.width=12, 
+#| dev='pdf',
+#| message=FALSE, 
+#| warning=FALSE, 
+#| cache=TRUE, 
+#| fig.cap="Modular"
+```
+
+# Supplementary
+
+```{r flowchart}
+#| fig.align='center', 
+#| fig.height=6,
+#| fig.width=10,
+#| message=FALSE,
+#| warning=FALSE,
+#| echo=FALSE,
+#| dev='pdf',
+#| out.width='100%',
+#| fig.cap="Distribution of gestational age (GA) at birth and postmentrual age (PMA) at scan for the subjects selected for this study. These have been obtained as a sub sample from dHCP data release 3 according to the parameters defined in Supplementary materials S1."
+
+
+grViz(diagram = "digraph flowchart {
+  node [fontname = arial, shape = rectangle, color = grey, style = filled]
+  tab1 [label = '@@1']
+  tab2 [label = '@@2']
+  tab3 [label = '@@3']
+  tab4 [label = '@@4']
+  tab5 [label = '@@5']
+  tab6 [label = '@@6']
+  tab7 [label = '@@7']
+  
+  tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7;
+}
+  
+  [1]: 'Initial sample from dHCP release 3 (N = 809)'
+  [2]: 'Remove poor quality scans (radiological scores 4 and 5) (N = 715)'    
+  [3]: 'Keep one participant for twins/triplets (participant with fewer motion outliers was selected) (N = 668)'   
+  [4]: 'Remove sessions with excessive motion (more than 10% motion outliers,defined as FD > 75th centile + 1.5*IQR) (N = 466)' 
+  [5]: 'Remove sessions not scanned at term equivalent age (PMA at scan < 37 weeks) (N = 395)'
+  [6]: 'Remove duplicate sessions for a single individual (N = 494)'   
+  [7]: 'Remove scans with one or more regions with less than 5 voxels  (N = 390)'
+  ")
+```
+
+## S1: Sample selection
+
+## S2: Hilbert transform
+
+## S3: No of clusters
+
+```{r clusNum, echo=FALSE, fig.height=3, fig.width=6, message=FALSE, warning=FALSE}
+```
+
+Ideal number of cluster according to Calinski-Harabasz and Davies-Bouldin methods.
+
+```{r gaSupp, echo=FALSE, fig.height=10, fig.width=6, message=FALSE, warning=FALSE, dev='pdf'}
+cowplot::plot_grid(models_ga_, 
+                   allTransGA_Net, 
+                   labels = c('a', 'b'), 
+                   ncol = 1)
+```
+
+## States and metrics
+
+```{r kopStates, eval=FALSE, include=FALSE}
+#| echo=FALSE, 
+#| fig.height=12, 
+#| fig.width=16, 
+#| message=FALSE, 
+#| warning=FALSE, 
+#| fig.cap="\\label{fig:kopStates_8} Clinical data descriptive statistics."
+```
+
