@@ -8,10 +8,10 @@ services:
     ports:
       - "8787:8787"
     volumes:
-          - "~/.ssh:/home/me/.ssh"
-          - ".:/home/me/neonatal_dfc"
-          - "./src:/home/me/neonatal_dfc/src"
-          - "./data:/home/me/neonatal_dfc/data"
-          - "./report:/home/me/neonatal_dfc/report"
+          - "~/.ssh:/home/rstudio/.ssh"
+          - ".:/home/rstudio/neonatal_dfc"
+          - "./src:/home/rstudio/neonatal_dfc/src"
+          - "./data:/home/rstudio/neonatal_dfc/data"
+          - "./report:/home/rstudio/neonatal_dfc/report"
     environment:
           - PASSWORD=letmein
