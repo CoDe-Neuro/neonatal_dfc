@@ -88,7 +88,7 @@ docker-compose down
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Wellcome_Trust_logo.svg" width="300">
 
-This project is funded by a Wellcome Trust Seed Award in Science [[217316/Z/19/Z]](https://europepmc.org/grantfinder/grantdetails?query=pi%3A%22Batalle%2BD%22%2Bgid%3A%22217316%22%2Bga%3A%22Wellcome%20Trust%22).
+This project was funded by a Wellcome Trust Seed Award in Science [[217316/Z/19/Z]](https://europepmc.org/grantfinder/grantdetails?query=pi%3A%22Batalle%2BD%22%2Bgid%3A%22217316%22%2Bga%3A%22Wellcome%20Trust%22).
 
 ## License
 
