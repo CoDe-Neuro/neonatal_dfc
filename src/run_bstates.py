@@ -20,7 +20,7 @@ patNum = int(argv[1])
 ## RUN SCRIPT FOR SUBJECT #
 
 Phases, syncConn, leidaArray = dyn.run_multiPatLEiDA(
-    RSsig[:, :, range(patNum - 1, patNum)])
+    RSsig[:, :, range(patNum - 1, patNum)],0.392, .02, .1, 2)
 
 print('Routine finished for patient no. ' + argv[1] + ' (signal).')
 

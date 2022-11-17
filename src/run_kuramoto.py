@@ -20,7 +20,7 @@ patNum = int(argv[1])
 ## RUN SCRIPT FOR SUBJECT #
 
 metastab, sync, shEntropy = dyn.run_multiPatKOP(
-    RSsig[:, :, range(patNum - 1, patNum)])
+    RSsig[:, :, range(patNum - 1, patNum)], 2, 8, 0.392, .02, .1, 2)
 
 print('Routine finished for patient no. ' + argv[1] + ' (signal).')
 
