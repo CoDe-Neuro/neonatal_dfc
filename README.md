@@ -78,7 +78,7 @@ All routines for the analyses in this article are available in the R Markdown do
 
 :warning: The login and password are 'rstudio' and 'letmein', respectively.
 
-:warning: We performed several permutation tests (n = 10,000) which can take a while to perform.
+:warning: We performed several permutation tests (n = 10,000) which can take a while to run.
 
 When you are finished with your analysis stop the Docker container with the command:
 
