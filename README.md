@@ -1,15 +1,32 @@
 # Neonatal brain dynamic functional connectivity: impact of preterm birth and association with early childhood neurodevelopment
 
+![GitHub](https://img.shields.io/github/license/CoDe-Neuro/neonatal_dfc)
 
 ## Download
 
+The easiest way to obtain the data used in our analysis is as follows:
+
 ### Github repository
+
+First, clone this Github repository with the command:
 
 ```
 git clone https://github.com/CoDe-Neuro/neonatal_dfc
 ```
 
 ### Additional data
+
+You will need to download some additional datasets we made available via Zenodo [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7053984.svg)](https://doi.org/10.5281/zenodo.7053984)
+
+.
+
+```
+cd neonatal_dfc
+
+curl -o data/2020_07_MASTER_connectomes90_All_select.mat https://zenodo.org/record/7053984/files/2020_07_MASTER_connectomes90_All_select.mat\?download\=1 
+```
+
+:warning: If you do not want to (or cannot) perform the BOLD signal analyses in Python, you can use the following command and jump directly to the figures and stats sections (in R).
 
 ```
 cd neonatal_dfc
@@ -22,9 +39,13 @@ curl -o data/2020_07_MASTER_connectomes90_All_select.mat https://zenodo.org/reco
 
 ## BOLD signal LEiDA and KOP analyses (Python)
 
+First we need to install the dynfc libs.
+
 ```
 pip install pip install dynfc==0.0.3a1
 ```
+
+The following commands will obtain both LEiDA and KOP for every subject in the dataset.
 
 ```
 cd src
@@ -46,7 +67,6 @@ python merge_km.py 390 kura 0
 :warning: The routines above should demand a considerable amount of RAM.
 
 ## Figures + stats (R)
-
 
 To guarantee reproducibility and reduce issues involved in solving dependencies, all the routines available here run in a Docker container. Please download the last version of the software at their website: https://www.docker.com/
 
