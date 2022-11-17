@@ -12,6 +12,8 @@ git clone https://github.com/CoDe-Neuro/neonatal_dfc
 ### Additional data
 
 ```
+cd neonatal_dfc
+
 curl -o data/2020_07_MASTER_connectomes90_All_select.mat https://zenodo.org/record/7053984/files/2020_07_MASTER_connectomes90_All_select.mat\?download\=1 
      -o data/df_clus_LEiDa_dim.csv https://zenodo.org/record/7053984/files/df_clus_LEiDa_dim.csv?download=1 
      -o data/df_kura.csv https://zenodo.org/record/7053984/files/df_kura.csv?download=1 
@@ -34,13 +36,35 @@ do
 done
 ```
 
+:warning: This can take a while to calculate. Consider running in parallel to reduce time consumed.
+
 ```
 python run_pca.py 390 LEiDa 0
 python run_bigClus.py 390 LEiDa 0
 python merge_km.py 390 kura 0
 ```
+:warning: The routines above should demand a considerable amount of RAM.
 
-## 
+## Figures + stats (R)
+
+
+To guarantee reproducibility and reduce issues involved in solving dependencies, all the routines available here run in a Docker container. Please download the last version of the software at their website: https://www.docker.com/
+
+To run the Docker container with the defined settings
+
+```
+docker-compose up
+```
+
+All routines for the analyses in this article are available in the R Markdown document to ease reproduction and visualisation. Open the link http://localhost:8787 and then the file index.Rmd when the RStudio loads. The web page should work as a regular RStudio IDE.
+
+:warning: The login and password are 'rstudio' and 'letmein', respectively.
+
+When you are finished with your analysis stop the Docker container with the command:
+
+```
+docker-compose down
+```
 
 ## Funding
 
