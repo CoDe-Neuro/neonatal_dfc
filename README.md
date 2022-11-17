@@ -16,9 +16,7 @@ git clone https://github.com/CoDe-Neuro/neonatal_dfc
 
 ### Additional data
 
-You will need to download some additional datasets we made available via Zenodo [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7053984.svg)](https://doi.org/10.5281/zenodo.7053984)
-
-.
+You will need to download some additional datasets we made available via Zenodo. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7053984.svg)](https://doi.org/10.5281/zenodo.7053984)
 
 ```
 cd neonatal_dfc
