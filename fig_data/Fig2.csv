@@ -1,0 +1,541 @@
+idx,ROI,ctr,value
+1,Precentral L,State Glb.A,-0.9427516930388561
+2,Precentral R,State Glb.A,-0.9318745076056836
+3,Frontal Sup L,State Glb.A,-0.9741495922317445
+4,Frontal Sup R,State Glb.A,-0.981252355723375
+5,Frontal Sup Orb L,State Glb.A,-0.7467608770851826
+6,Frontal Sup Orb R,State Glb.A,-0.7522731487429114
+7,Frontal Mid L,State Glb.A,-0.9644978456417436
+8,Frontal Mid R,State Glb.A,-0.9676191940337318
+9,Frontal Mid Orb L,State Glb.A,-0.8110094385972292
+10,Frontal Mid Orb R,State Glb.A,-0.8003410853490965
+11,Frontal Inf Oper L,State Glb.A,-0.8811357704655678
+12,Frontal Inf Oper R,State Glb.A,-0.9068046497761011
+13,Frontal Inf Tri L,State Glb.A,-0.9117798070934641
+14,Frontal Inf Tri R,State Glb.A,-0.8950826843141685
+15,Frontal Inf Orb L,State Glb.A,-0.8459868624272575
+16,Frontal Inf Orb R,State Glb.A,-0.8666028932220224
+17,Rolandic Oper L,State Glb.A,-0.911776394858891
+18,Rolandic Oper R,State Glb.A,-0.9119235192734656
+19,Supp Motor Area L,State Glb.A,-0.9266041635855785
+20,Supp Motor Area R,State Glb.A,-0.9208928967928574
+21,Olfactory L,State Glb.A,-0.48146188112159854
+22,Olfactory R,State Glb.A,-0.49662222345044477
+23,Frontal Sup Medial L,State Glb.A,-0.9270835431505561
+24,Frontal Sup Medial R,State Glb.A,-0.9228140499326315
+25,Frontal Med Orb L,State Glb.A,-0.8757211004049437
+26,Frontal Med Orb R,State Glb.A,-0.8769140746558242
+27,Rectus L,State Glb.A,-0.6811031197783936
+28,Rectus R,State Glb.A,-0.6738913769535171
+29,Insula L,State Glb.A,-0.8798668453120655
+30,Insula R,State Glb.A,-0.8809537084829535
+31,Cingulum Ant L,State Glb.A,-0.9033642048397377
+32,Cingulum Ant R,State Glb.A,-0.9157122454328627
+33,Cingulum Mid L,State Glb.A,-0.9884684275573168
+34,Cingulum Mid R,State Glb.A,-1
+35,Cingulum Post L,State Glb.A,-0.7810017469342952
+36,Cingulum Post R,State Glb.A,-0.6799720713232635
+37,Hippocampus L,State Glb.A,-0.5056245277070551
+38,Hippocampus R,State Glb.A,-0.5185704034445495
+39,ParaHippocampal L,State Glb.A,-0.6125398826780787
+40,ParaHippocampal R,State Glb.A,-0.5804105349792372
+41,Amygdala L,State Glb.A,-0.33261596587634606
+42,Amygdala R,State Glb.A,-0.3280426305741199
+43,Calcarine L,State Glb.A,-0.8276201938015438
+44,Calcarine R,State Glb.A,-0.804246639768453
+45,Cuneus L,State Glb.A,-0.8502331451831344
+46,Cuneus R,State Glb.A,-0.8580653231791361
+47,Lingual L,State Glb.A,-0.7635405184373774
+48,Lingual R,State Glb.A,-0.7523619089792177
+49,Occipital Sup L,State Glb.A,-0.9074619048460313
+50,Occipital Sup R,State Glb.A,-0.8772477218849297
+51,Occipital Mid L,State Glb.A,-0.884511160056375
+52,Occipital Mid R,State Glb.A,-0.8525838301973725
+53,Occipital Inf L,State Glb.A,-0.6405176274064712
+54,Occipital Inf R,State Glb.A,-0.5034596725457243
+55,Fusiform L,State Glb.A,-0.7277577162203378
+56,Fusiform R,State Glb.A,-0.6986651113993089
+57,Postcentral L,State Glb.A,-0.9458436412970639
+58,Postcentral R,State Glb.A,-0.9242777552955724
+59,Parietal Sup L,State Glb.A,-0.8681340328534193
+60,Parietal Sup R,State Glb.A,-0.8733938701855669
+61,Parietal Inf L,State Glb.A,-0.9121703531832509
+62,Parietal Inf R,State Glb.A,-0.9025135488720228
+63,SupraMarginal L,State Glb.A,-0.9487535790976729
+64,SupraMarginal R,State Glb.A,-0.9412280029147791
+65,Angular L,State Glb.A,-0.8664424505896782
+66,Angular R,State Glb.A,-0.9226375810087595
+67,Precuneus L,State Glb.A,-0.9808679679791351
+68,Precuneus R,State Glb.A,-0.977830380308564
+69,Paracentral Lobule L,State Glb.A,-0.8005928888776129
+70,Paracentral Lobule R,State Glb.A,-0.77189398069557
+71,Caudate L,State Glb.A,-0.6855525468871629
+72,Caudate R,State Glb.A,-0.7026227276117596
+73,Putamen L,State Glb.A,-0.6869620095551591
+74,Putamen R,State Glb.A,-0.6916817235694734
+75,Pallidum L,State Glb.A,-0.5059883915167686
+76,Pallidum R,State Glb.A,-0.42957863963379567
+77,Thalamus L,State Glb.A,-0.8118095550239826
+78,Thalamus R,State Glb.A,-0.8230498590024052
+79,Heschl L,State Glb.A,-0.679617015594236
+80,Heschl R,State Glb.A,-0.7012822480227747
+81,Temporal Sup L,State Glb.A,-0.8009977508848737
+82,Temporal Sup R,State Glb.A,-0.8595397814536874
+83,Temporal Pole Sup L,State Glb.A,-0.5687008451814388
+84,Temporal Pole Sup R,State Glb.A,-0.6081841818956389
+85,Temporal Mid L,State Glb.A,-0.9186502294748826
+86,Temporal Mid R,State Glb.A,-0.9239387271195035
+87,Temporal Pole Mid L,State Glb.A,-0.4316000447515636
+88,Temporal Pole Mid R,State Glb.A,-0.5291429560434158
+89,Temporal Inf L,State Glb.A,-0.7739792043056045
+90,Temporal Inf R,State Glb.A,-0.8120876027599814
+1,Precentral L,State Glb.B,-0.990830805692563
+2,Precentral R,State Glb.B,-0.9844549721667256
+3,Frontal Sup L,State Glb.B,-0.8287667678201626
+4,Frontal Sup R,State Glb.B,-0.8504899648040123
+5,Frontal Sup Orb L,State Glb.B,-0.2404067962590254
+6,Frontal Sup Orb R,State Glb.B,-0.19277916997490344
+7,Frontal Mid L,State Glb.B,-0.7711750122360259
+8,Frontal Mid R,State Glb.B,-0.7725975341716075
+9,Frontal Mid Orb L,State Glb.B,-0.31813576224273327
+10,Frontal Mid Orb R,State Glb.B,-0.3368312898785508
+11,Frontal Inf Oper L,State Glb.B,-0.509410116415062
+12,Frontal Inf Oper R,State Glb.B,-0.5240992108792144
+13,Frontal Inf Tri L,State Glb.B,-0.4309928589694609
+14,Frontal Inf Tri R,State Glb.B,-0.4352965265630795
+15,Frontal Inf Orb L,State Glb.B,-0.24230563862637067
+16,Frontal Inf Orb R,State Glb.B,-0.2962360951503974
+17,Rolandic Oper L,State Glb.B,-0.9237235603585482
+18,Rolandic Oper R,State Glb.B,-0.9205338373624956
+19,Supp Motor Area L,State Glb.B,-0.885859266450934
+20,Supp Motor Area R,State Glb.B,-0.9086766912948043
+21,Olfactory L,State Glb.B,-0.13318666522276454
+22,Olfactory R,State Glb.B,-0.13163553488361326
+23,Frontal Sup Medial L,State Glb.B,-0.5618983102967068
+24,Frontal Sup Medial R,State Glb.B,-0.5149609512430764
+25,Frontal Med Orb L,State Glb.B,-0.4160359953848785
+26,Frontal Med Orb R,State Glb.B,-0.4121136278554918
+27,Rectus L,State Glb.B,-0.09461799020188542
+28,Rectus R,State Glb.B,-0.10458963277676352
+29,Insula L,State Glb.B,-0.6638791329982159
+30,Insula R,State Glb.B,-0.6874487304417671
+31,Cingulum Ant L,State Glb.B,-0.48723196846365496
+32,Cingulum Ant R,State Glb.B,-0.4706221813024231
+33,Cingulum Mid L,State Glb.B,-0.9380644962590229
+34,Cingulum Mid R,State Glb.B,-0.9492410666276493
+35,Cingulum Post L,State Glb.B,-0.42091705994198536
+36,Cingulum Post R,State Glb.B,-0.3242784994579002
+37,Hippocampus L,State Glb.B,-0.13080781753215218
+38,Hippocampus R,State Glb.B,-0.16167803577731232
+39,ParaHippocampal L,State Glb.B,-0.2323918939523797
+40,ParaHippocampal R,State Glb.B,-0.2159653609110792
+41,Amygdala L,State Glb.B,-0.17311413393862937
+42,Amygdala R,State Glb.B,-0.11928403520745672
+43,Calcarine L,State Glb.B,-0.7390088224411198
+44,Calcarine R,State Glb.B,-0.7460695670712435
+45,Cuneus L,State Glb.B,-0.7727658625389987
+46,Cuneus R,State Glb.B,-0.7950115220641157
+47,Lingual L,State Glb.B,-0.6230341543359926
+48,Lingual R,State Glb.B,-0.6297110221161828
+49,Occipital Sup L,State Glb.B,-0.8950023883111689
+50,Occipital Sup R,State Glb.B,-0.8531829108606256
+51,Occipital Mid L,State Glb.B,-0.8196037459357067
+52,Occipital Mid R,State Glb.B,-0.8261923935105494
+53,Occipital Inf L,State Glb.B,-0.4770412595462843
+54,Occipital Inf R,State Glb.B,-0.36917271160609044
+55,Fusiform L,State Glb.B,-0.4890344810683886
+56,Fusiform R,State Glb.B,-0.45897679388450807
+57,Postcentral L,State Glb.B,-1
+58,Postcentral R,State Glb.B,-0.9835918063745628
+59,Parietal Sup L,State Glb.B,-0.8516277249830346
+60,Parietal Sup R,State Glb.B,-0.8722184870366801
+61,Parietal Inf L,State Glb.B,-0.8116382971368389
+62,Parietal Inf R,State Glb.B,-0.8055437205795094
+63,SupraMarginal L,State Glb.B,-0.8949280499093769
+64,SupraMarginal R,State Glb.B,-0.9143188687469173
+65,Angular L,State Glb.B,-0.5047450113333489
+66,Angular R,State Glb.B,-0.7527872765311856
+67,Precuneus L,State Glb.B,-0.9381453947729058
+68,Precuneus R,State Glb.B,-0.9392466137982673
+69,Paracentral Lobule L,State Glb.B,-0.8340372083941464
+70,Paracentral Lobule R,State Glb.B,-0.8022455314906173
+71,Caudate L,State Glb.B,-0.4539945889095564
+72,Caudate R,State Glb.B,-0.47318295185103815
+73,Putamen L,State Glb.B,-0.5740012425364829
+74,Putamen R,State Glb.B,-0.6003130013143253
+75,Pallidum L,State Glb.B,-0.30976173928905587
+76,Pallidum R,State Glb.B,-0.26450917815330827
+77,Thalamus L,State Glb.B,-0.6325093577795943
+78,Thalamus R,State Glb.B,-0.6503367834209343
+79,Heschl L,State Glb.B,-0.6047734459631745
+80,Heschl R,State Glb.B,-0.6195415464663109
+81,Temporal Sup L,State Glb.B,-0.6218806065236179
+82,Temporal Sup R,State Glb.B,-0.6738084794011877
+83,Temporal Pole Sup L,State Glb.B,-0.19148157326302043
+84,Temporal Pole Sup R,State Glb.B,-0.24008267738770173
+85,Temporal Mid L,State Glb.B,-0.6642317067490958
+86,Temporal Mid R,State Glb.B,-0.736384137232044
+87,Temporal Pole Mid L,State Glb.B,-0.07531546866350679
+88,Temporal Pole Mid R,State Glb.B,-0.1344601799806581
+89,Temporal Inf L,State Glb.B,-0.49318535759197635
+90,Temporal Inf R,State Glb.B,-0.5946231651101449
+1,Precentral L,State FP,-0.9432120263121857
+2,Precentral R,State FP,-0.9677522419425072
+3,Frontal Sup L,State FP,0.1733926734457011
+4,Frontal Sup R,State FP,0.051637672367475934
+5,Frontal Sup Orb L,State FP,0.21423007523115828
+6,Frontal Sup Orb R,State FP,0.1704073781583097
+7,Frontal Mid L,State FP,0.3917075095448799
+8,Frontal Mid R,State FP,0.4153474374926354
+9,Frontal Mid Orb L,State FP,0.28026010322872863
+10,Frontal Mid Orb R,State FP,0.2534827430813582
+11,Frontal Inf Oper L,State FP,0.0874630558232598
+12,Frontal Inf Oper R,State FP,0.2813228235308631
+13,Frontal Inf Tri L,State FP,0.43401826896185436
+14,Frontal Inf Tri R,State FP,0.3545638878152057
+15,Frontal Inf Orb L,State FP,0.28782662420466987
+16,Frontal Inf Orb R,State FP,0.2882298503567708
+17,Rolandic Oper L,State FP,-0.874260218947101
+18,Rolandic Oper R,State FP,-0.8589762281054508
+19,Supp Motor Area L,State FP,-0.6322594910371443
+20,Supp Motor Area R,State FP,-0.7274043506377863
+21,Olfactory L,State FP,-0.17672037690589837
+22,Olfactory R,State FP,-0.15101943535421086
+23,Frontal Sup Medial L,State FP,0.33785561872811587
+24,Frontal Sup Medial R,State FP,0.2663193526099733
+25,Frontal Med Orb L,State FP,0.08555280526564042
+26,Frontal Med Orb R,State FP,0.06071189316766687
+27,Rectus L,State FP,0.08850905453497195
+28,Rectus R,State FP,0.10641824590602085
+29,Insula L,State FP,-0.4993922885154221
+30,Insula R,State FP,-0.5444724906532482
+31,Cingulum Ant L,State FP,0.240630345501214
+32,Cingulum Ant R,State FP,0.27237322500173744
+33,Cingulum Mid L,State FP,-0.5444943579480883
+34,Cingulum Mid R,State FP,-0.43224394962262713
+35,Cingulum Post L,State FP,-0.03954325339738477
+36,Cingulum Post R,State FP,-0.13634945058883646
+37,Hippocampus L,State FP,-0.30251836585847486
+38,Hippocampus R,State FP,-0.3282528501907437
+39,ParaHippocampal L,State FP,-0.2396649224420921
+40,ParaHippocampal R,State FP,-0.2934103830250567
+41,Amygdala L,State FP,-0.26238163233778433
+42,Amygdala R,State FP,-0.27452135400951727
+43,Calcarine L,State FP,-0.6417635000066024
+44,Calcarine R,State FP,-0.6482291925330329
+45,Cuneus L,State FP,-0.5707064237414675
+46,Cuneus R,State FP,-0.5671756725162383
+47,Lingual L,State FP,-0.5672356223100359
+48,Lingual R,State FP,-0.572044940137901
+49,Occipital Sup L,State FP,-0.4846262621520984
+50,Occipital Sup R,State FP,-0.5938668419183143
+51,Occipital Mid L,State FP,-0.40287999657931944
+52,Occipital Mid R,State FP,-0.508734111588612
+53,Occipital Inf L,State FP,-0.3772845117940996
+54,Occipital Inf R,State FP,-0.3863816305971318
+55,Fusiform L,State FP,-0.3426742862177183
+56,Fusiform R,State FP,-0.3919826377772458
+57,Postcentral L,State FP,-0.9740996912553895
+58,Postcentral R,State FP,-1
+59,Parietal Sup L,State FP,-0.30372292948839213
+60,Parietal Sup R,State FP,-0.4448297079216756
+61,Parietal Inf L,State FP,-0.07937935221538377
+62,Parietal Inf R,State FP,-0.037564454066703355
+63,SupraMarginal L,State FP,-0.6240632676478632
+64,SupraMarginal R,State FP,-0.5885994021450355
+65,Angular L,State FP,0.3732517589105309
+66,Angular R,State FP,0.19585220735240383
+67,Precuneus L,State FP,-0.3652782608755669
+68,Precuneus R,State FP,-0.37024203358179403
+69,Paracentral Lobule L,State FP,-0.843451370852743
+70,Paracentral Lobule R,State FP,-0.824311345814805
+71,Caudate L,State FP,-0.4134000120714468
+72,Caudate R,State FP,-0.3672468121487236
+73,Putamen L,State FP,-0.6145328492689801
+74,Putamen R,State FP,-0.6155345979450131
+75,Pallidum L,State FP,-0.29855766200134853
+76,Pallidum R,State FP,-0.2567617601191427
+77,Thalamus L,State FP,-0.4148333672242713
+78,Thalamus R,State FP,-0.47261088097679815
+79,Heschl L,State FP,-0.6212119086431283
+80,Heschl R,State FP,-0.6340296722043999
+81,Temporal Sup L,State FP,-0.47822502487596225
+82,Temporal Sup R,State FP,-0.4268381372067795
+83,Temporal Pole Sup L,State FP,-0.19812028347963925
+84,Temporal Pole Sup R,State FP,-0.24772897086088028
+85,Temporal Mid L,State FP,0.058648473892497464
+86,Temporal Mid R,State FP,-0.09753702225509979
+87,Temporal Pole Mid L,State FP,-0.03673086827619302
+88,Temporal Pole Mid R,State FP,-0.07196847149639285
+89,Temporal Inf L,State FP,-0.023731068152828595
+90,Temporal Inf R,State FP,-0.17873351831826362
+1,Precentral L,State Glb.C,-0.5118616026535162
+2,Precentral R,State Glb.C,-0.46299024086340207
+3,Frontal Sup L,State Glb.C,-0.9751264129947028
+4,Frontal Sup R,State Glb.C,-0.9663326511090665
+5,Frontal Sup Orb L,State Glb.C,-0.7052292079045153
+6,Frontal Sup Orb R,State Glb.C,-0.7179334721357244
+7,Frontal Mid L,State Glb.C,-1
+8,Frontal Mid R,State Glb.C,-0.9994262714101767
+9,Frontal Mid Orb L,State Glb.C,-0.8109577007067047
+10,Frontal Mid Orb R,State Glb.C,-0.7984229441425711
+11,Frontal Inf Oper L,State Glb.C,-0.692772648670512
+12,Frontal Inf Oper R,State Glb.C,-0.8051240475715428
+13,Frontal Inf Tri L,State Glb.C,-0.8636772813955443
+14,Frontal Inf Tri R,State Glb.C,-0.8336958830250217
+15,Frontal Inf Orb L,State Glb.C,-0.7760223817805652
+16,Frontal Inf Orb R,State Glb.C,-0.8132847765149791
+17,Rolandic Oper L,State Glb.C,-0.12650922993174793
+18,Rolandic Oper R,State Glb.C,-0.17081832904310848
+19,Supp Motor Area L,State Glb.C,-0.6186804361735788
+20,Supp Motor Area R,State Glb.C,-0.5439309921897886
+21,Olfactory L,State Glb.C,-0.24899099833658075
+22,Olfactory R,State Glb.C,-0.2720556913165977
+23,Frontal Sup Medial L,State Glb.C,-0.900480378750823
+24,Frontal Sup Medial R,State Glb.C,-0.8765534503944495
+25,Frontal Med Orb L,State Glb.C,-0.7554353437090046
+26,Frontal Med Orb R,State Glb.C,-0.7619798859050406
+27,Rectus L,State Glb.C,-0.5899922493919266
+28,Rectus R,State Glb.C,-0.5830455079536744
+29,Insula L,State Glb.C,-0.25875475794239283
+30,Insula R,State Glb.C,-0.23944422817667194
+31,Cingulum Ant L,State Glb.C,-0.8523566091939411
+32,Cingulum Ant R,State Glb.C,-0.8682444784501105
+33,Cingulum Mid L,State Glb.C,-0.822183659925332
+34,Cingulum Mid R,State Glb.C,-0.8877556695988725
+35,Cingulum Post L,State Glb.C,-0.6841719331631475
+36,Cingulum Post R,State Glb.C,-0.4885726190501011
+37,Hippocampus L,State Glb.C,-0.09866922527672814
+38,Hippocampus R,State Glb.C,-0.09710882271243636
+39,ParaHippocampal L,State Glb.C,-0.3548477290042942
+40,ParaHippocampal R,State Glb.C,-0.31297345891270273
+41,Amygdala L,State Glb.C,-0.07121565053869192
+42,Amygdala R,State Glb.C,-0.054398954279630055
+43,Calcarine L,State Glb.C,-0.45737253515866466
+44,Calcarine R,State Glb.C,-0.4690325114095566
+45,Cuneus L,State Glb.C,-0.6388883873924665
+46,Cuneus R,State Glb.C,-0.659519677367809
+47,Lingual L,State Glb.C,-0.45779977749403766
+48,Lingual R,State Glb.C,-0.4877289432241516
+49,Occipital Sup L,State Glb.C,-0.8831936761953362
+50,Occipital Sup R,State Glb.C,-0.7831489446472756
+51,Occipital Mid L,State Glb.C,-0.8764859397018244
+52,Occipital Mid R,State Glb.C,-0.813950718900019
+53,Occipital Inf L,State Glb.C,-0.6209764448607508
+54,Occipital Inf R,State Glb.C,-0.37075390783869844
+55,Fusiform L,State Glb.C,-0.647605384617853
+56,Fusiform R,State Glb.C,-0.580817015012522
+57,Postcentral L,State Glb.C,-0.5056509534738277
+58,Postcentral R,State Glb.C,-0.45021207665439245
+59,Parietal Sup L,State Glb.C,-0.8603452271276928
+60,Parietal Sup R,State Glb.C,-0.8115553569686347
+61,Parietal Inf L,State Glb.C,-0.9093561878042733
+62,Parietal Inf R,State Glb.C,-0.902498241970636
+63,SupraMarginal L,State Glb.C,-0.45825171495719474
+64,SupraMarginal R,State Glb.C,-0.5757590787511127
+65,Angular L,State Glb.C,-0.8919419568589427
+66,Angular R,State Glb.C,-0.9676265972681221
+67,Precuneus L,State Glb.C,-0.9430557441584775
+68,Precuneus R,State Glb.C,-0.9322248962383208
+69,Paracentral Lobule L,State Glb.C,-0.21500490990957413
+70,Paracentral Lobule R,State Glb.C,-0.16597447853762082
+71,Caudate L,State Glb.C,-0.4626958082262113
+72,Caudate R,State Glb.C,-0.4949040133946315
+73,Putamen L,State Glb.C,-0.26523909975977583
+74,Putamen R,State Glb.C,-0.26805840556856764
+75,Pallidum L,State Glb.C,-0.2670870108394628
+76,Pallidum R,State Glb.C,-0.2102706130069943
+77,Thalamus L,State Glb.C,-0.5429308861887631
+78,Thalamus R,State Glb.C,-0.5337458970160559
+79,Heschl L,State Glb.C,0.2515755333819478
+80,Heschl R,State Glb.C,0.19504664676055253
+81,Temporal Sup L,State Glb.C,-0.06522664256958437
+82,Temporal Sup R,State Glb.C,-0.26786329372718753
+83,Temporal Pole Sup L,State Glb.C,-0.20725913361436055
+84,Temporal Pole Sup R,State Glb.C,-0.21363251338882217
+85,Temporal Mid L,State Glb.C,-0.8515075236570887
+86,Temporal Mid R,State Glb.C,-0.8942656187608414
+87,Temporal Pole Mid L,State Glb.C,-0.3283060300351229
+88,Temporal Pole Mid R,State Glb.C,-0.3785501998397269
+89,Temporal Inf L,State Glb.C,-0.8278209106353834
+90,Temporal Inf R,State Glb.C,-0.8327619999973307
+1,Precentral L,State SM,0.7147481243426513
+2,Precentral R,State SM,0.746327298609526
+3,Frontal Sup L,State SM,-0.8586361375442066
+4,Frontal Sup R,State SM,-0.7882000147312491
+5,Frontal Sup Orb L,State SM,-0.6165331767715387
+6,Frontal Sup Orb R,State SM,-0.629947973056722
+7,Frontal Mid L,State SM,-0.9707105361243777
+8,Frontal Mid R,State SM,-1
+9,Frontal Mid Orb L,State SM,-0.7299387313759568
+10,Frontal Mid Orb R,State SM,-0.7259363370720429
+11,Frontal Inf Oper L,State SM,-0.416137383277416
+12,Frontal Inf Oper R,State SM,-0.6743083516169445
+13,Frontal Inf Tri L,State SM,-0.8250378937727827
+14,Frontal Inf Tri R,State SM,-0.7910942398779716
+15,Frontal Inf Orb L,State SM,-0.7190947932739736
+16,Frontal Inf Orb R,State SM,-0.7653875129613394
+17,Rolandic Oper L,State SM,0.6742042011055769
+18,Rolandic Oper R,State SM,0.64499171554978
+19,Supp Motor Area L,State SM,0.2603394243466034
+20,Supp Motor Area R,State SM,0.38764340094224387
+21,Olfactory L,State SM,-0.14999286667957484
+22,Olfactory R,State SM,-0.17267582080449512
+23,Frontal Sup Medial L,State SM,-0.892715727252458
+24,Frontal Sup Medial R,State SM,-0.858371548824187
+25,Frontal Med Orb L,State SM,-0.6704195875372733
+26,Frontal Med Orb R,State SM,-0.6752180861409743
+27,Rectus L,State SM,-0.4815018137702307
+28,Rectus R,State SM,-0.5134986619518017
+29,Insula L,State SM,0.1934602947906491
+30,Insula R,State SM,0.2390252561544122
+31,Cingulum Ant L,State SM,-0.7864761724463774
+32,Cingulum Ant R,State SM,-0.8494970906680551
+33,Cingulum Mid L,State SM,-0.14165337309956547
+34,Cingulum Mid R,State SM,-0.3668766635520556
+35,Cingulum Post L,State SM,-0.5775616318291212
+36,Cingulum Post R,State SM,-0.37729197202231635
+37,Hippocampus L,State SM,0.007883697090458395
+38,Hippocampus R,State SM,0.02806677398694088
+39,ParaHippocampal L,State SM,-0.2553876968013779
+40,ParaHippocampal R,State SM,-0.22086139865054596
+41,Amygdala L,State SM,0.03790492227640379
+42,Amygdala R,State SM,0.0609774303057869
+43,Calcarine L,State SM,-0.1649794820991834
+44,Calcarine R,State SM,-0.16482507089168646
+45,Cuneus L,State SM,-0.3645596279944315
+46,Cuneus R,State SM,-0.39835668847444305
+47,Lingual L,State SM,-0.22426524633888426
+48,Lingual R,State SM,-0.25568241603274344
+49,Occipital Sup L,State SM,-0.6368903806993662
+50,Occipital Sup R,State SM,-0.4849426739078469
+51,Occipital Mid L,State SM,-0.6735584539643323
+52,Occipital Mid R,State SM,-0.5399920871494769
+53,Occipital Inf L,State SM,-0.3809122332083613
+54,Occipital Inf R,State SM,-0.1459744411579755
+55,Fusiform L,State SM,-0.5174306765771937
+56,Fusiform R,State SM,-0.44366797463179947
+57,Postcentral L,State SM,0.6651644394378858
+58,Postcentral R,State SM,0.7249234593457224
+59,Parietal Sup L,State SM,-0.49853302658141924
+60,Parietal Sup R,State SM,-0.3059310819577034
+61,Parietal Inf L,State SM,-0.6173888352758438
+62,Parietal Inf R,State SM,-0.6290315445967956
+63,SupraMarginal L,State SM,0.1204711195770999
+64,SupraMarginal R,State SM,0.05378402025896541
+65,Angular L,State SM,-0.9316340263276922
+66,Angular R,State SM,-0.9710431400783949
+67,Precuneus L,State SM,-0.6343327030883422
+68,Precuneus R,State SM,-0.6879893148316409
+69,Paracentral Lobule L,State SM,0.6616325451312159
+70,Paracentral Lobule R,State SM,0.6584093837549846
+71,Caudate L,State SM,-0.1233664910001855
+72,Caudate R,State SM,-0.11070239446068189
+73,Putamen L,State SM,0.2363131683895838
+74,Putamen R,State SM,0.25335595182594
+75,Pallidum L,State SM,0.01728936842745311
+76,Pallidum R,State SM,-0.0046525000802366615
+77,Thalamus L,State SM,-0.04109304912758777
+78,Thalamus R,State SM,-0.04339777228219189
+79,Heschl L,State SM,0.4235236291815887
+80,Heschl R,State SM,0.36154147025364214
+81,Temporal Sup L,State SM,0.04660609739248637
+82,Temporal Sup R,State SM,-0.13300694744282326
+83,Temporal Pole Sup L,State SM,-0.18673725140351283
+84,Temporal Pole Sup R,State SM,-0.19424708485737047
+85,Temporal Mid L,State SM,-0.8432574611098197
+86,Temporal Mid R,State SM,-0.8866247625415823
+87,Temporal Pole Mid L,State SM,-0.29506353397092006
+88,Temporal Pole Mid R,State SM,-0.3907153523900877
+89,Temporal Inf L,State SM,-0.6777307026700109
+90,Temporal Inf R,State SM,-0.7188423705797079
+1,Precentral L,State Occ.,-0.9952133216009306
+2,Precentral R,State Occ.,-0.9719262204485315
+3,Frontal Sup L,State Occ.,-0.9583099381186152
+4,Frontal Sup R,State Occ.,-0.9955448866154439
+5,Frontal Sup Orb L,State Occ.,-0.6099802026595894
+6,Frontal Sup Orb R,State Occ.,-0.5751118127065232
+7,Frontal Mid L,State Occ.,-0.9881059819489146
+8,Frontal Mid R,State Occ.,-0.998080472613986
+9,Frontal Mid Orb L,State Occ.,-0.6846963745331985
+10,Frontal Mid Orb R,State Occ.,-0.6647992390345938
+11,Frontal Inf Oper L,State Occ.,-0.9296977808199712
+12,Frontal Inf Oper R,State Occ.,-0.9338428835180963
+13,Frontal Inf Tri L,State Occ.,-0.8647080965809705
+14,Frontal Inf Tri R,State Occ.,-0.844576472834649
+15,Frontal Inf Orb L,State Occ.,-0.7382663220801077
+16,Frontal Inf Orb R,State Occ.,-0.7700971997324667
+17,Rolandic Oper L,State Occ.,-0.953521968480868
+18,Rolandic Oper R,State Occ.,-0.9473057838951532
+19,Supp Motor Area L,State Occ.,-0.9569032079314185
+20,Supp Motor Area R,State Occ.,-0.9356245288115616
+21,Olfactory L,State Occ.,-0.27627556105618845
+22,Olfactory R,State Occ.,-0.24805089516228446
+23,Frontal Sup Medial L,State Occ.,-0.8679528255160271
+24,Frontal Sup Medial R,State Occ.,-0.8025322073554632
+25,Frontal Med Orb L,State Occ.,-0.6171123753658571
+26,Frontal Med Orb R,State Occ.,-0.62070718634872
+27,Rectus L,State Occ.,-0.47883877211460596
+28,Rectus R,State Occ.,-0.4386986660377671
+29,Insula L,State Occ.,-0.8488286302275451
+30,Insula R,State Occ.,-0.8382511115822517
+31,Cingulum Ant L,State Occ.,-0.8530619523732837
+32,Cingulum Ant R,State Occ.,-0.8872867149754692
+33,Cingulum Mid L,State Occ.,-0.9740555972151927
+34,Cingulum Mid R,State Occ.,-1
+35,Cingulum Post L,State Occ.,-0.398149067570489
+36,Cingulum Post R,State Occ.,-0.22877879651336744
+37,Hippocampus L,State Occ.,-0.18909471691313984
+38,Hippocampus R,State Occ.,-0.18229786262644065
+39,ParaHippocampal L,State Occ.,-0.09252295024752973
+40,ParaHippocampal R,State Occ.,-0.07234415327474224
+41,Amygdala L,State Occ.,-0.09469515039326958
+42,Amygdala R,State Occ.,-0.10184686737531273
+43,Calcarine L,State Occ.,0.2207699723898694
+44,Calcarine R,State Occ.,0.3011292405831846
+45,Cuneus L,State Occ.,0.24302209335980884
+46,Cuneus R,State Occ.,0.2981607285092895
+47,Lingual L,State Occ.,0.3511465824380069
+48,Lingual R,State Occ.,0.42567448788448753
+49,Occipital Sup L,State Occ.,0.055818052275624315
+50,Occipital Sup R,State Occ.,0.2771539284380789
+51,Occipital Mid L,State Occ.,0.1187979372335887
+52,Occipital Mid R,State Occ.,0.2932619465267197
+53,Occipital Inf L,State Occ.,0.2514693605026388
+54,Occipital Inf R,State Occ.,0.27985608008635904
+55,Fusiform L,State Occ.,0.2933002198518204
+56,Fusiform R,State Occ.,0.36888253197774235
+57,Postcentral L,State Occ.,-0.8646302741009201
+58,Postcentral R,State Occ.,-0.849041268507506
+59,Parietal Sup L,State Occ.,-0.4817196788901729
+60,Parietal Sup R,State Occ.,-0.5025563462251105
+61,Parietal Inf L,State Occ.,-0.6943522380844511
+62,Parietal Inf R,State Occ.,-0.6836318064256517
+63,SupraMarginal L,State Occ.,-0.8205257716548519
+64,SupraMarginal R,State Occ.,-0.8288568486367149
+65,Angular L,State Occ.,-0.640259942643982
+66,Angular R,State Occ.,-0.5916087323545578
+67,Precuneus L,State Occ.,-0.7098137812334271
+68,Precuneus R,State Occ.,-0.6353125362976623
+69,Paracentral Lobule L,State Occ.,-0.6936575547942609
+70,Paracentral Lobule R,State Occ.,-0.6381596059347069
+71,Caudate L,State Occ.,-0.18533311800191446
+72,Caudate R,State Occ.,-0.20653233161173107
+73,Putamen L,State Occ.,-0.21944085788426473
+74,Putamen R,State Occ.,-0.2735245401202525
+75,Pallidum L,State Occ.,-0.23359680232612923
+76,Pallidum R,State Occ.,-0.21930020124279492
+77,Thalamus L,State Occ.,-0.5171563026048086
+78,Thalamus R,State Occ.,-0.5435755389308313
+79,Heschl L,State Occ.,-0.46369887221604794
+80,Heschl R,State Occ.,-0.4470725852609245
+81,Temporal Sup L,State Occ.,-0.4679525456795823
+82,Temporal Sup R,State Occ.,-0.4880512319118749
+83,Temporal Pole Sup L,State Occ.,-0.22321361202005457
+84,Temporal Pole Sup R,State Occ.,-0.2568879893911628
+85,Temporal Mid L,State Occ.,-0.5018221428837639
+86,Temporal Mid R,State Occ.,-0.28687722379471475
+87,Temporal Pole Mid L,State Occ.,-0.18286915664481743
+88,Temporal Pole Mid R,State Occ.,-0.2265985035566169
+89,Temporal Inf L,State Occ.,-0.23472272151132342
+90,Temporal Inf R,State Occ.,-0.05603465130543416

@@ -2511,6 +2511,9 @@ cowplot::plot_grid(sq_phoc,
 imd_tab <- readxl::read_xlsx(path = 'data/imd_pat.xlsx')
 names(imd_tab) <- c('sub', 'age_m', 'age_d', 'cor_age_m', 'cor_age_d', 'imd')
 
+imd_tab$imd[imd_tab$sub == 'CC00551XX07'] <- 9612
+imd_tab$imd[imd_tab$sub == 'CC00956XX16'] <- 27951
+
 dfm$cog_comp[dfm$cog_comp < 0] <- NA
 dfm$motor_comp[dfm$motor_comp < 0] <- NA
 dfm$language_comp[dfm$language_comp < 0] <- NA

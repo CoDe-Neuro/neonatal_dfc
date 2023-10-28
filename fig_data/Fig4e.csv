@@ -1,0 +1,25 @@
+cluster,var,filt.t,p.perm,filt.p,pp.for,term,for.t
+1,Mean synchronisation,-5.092377973137807,0,0,p < 0.001,Born Preterm**,-5.09
+2,Mean synchronisation,-3.403687451994133,0.0011,0.0011,p = 0.0011,Born Preterm**,-3.40
+3,Mean synchronisation,-2.7943599515448896,0.0052,0.0052,p = 0.0052,Born Preterm**,-2.79
+4,Mean synchronisation,-2.1837606518006725,0.0305,0.0305,p = 0.0305,Born Preterm**,-2.18
+5,Mean synchronisation,NA,0.0806,NA,NA,Born Preterm**,NA
+6,Mean synchronisation,-2.576485833971561,0.0097,0.0097,p = 0.0097,Born Preterm**,-2.58
+1,Metastability,-2.504176383885036,0.0142,0.0142,p = 0.0142,Born Preterm**,-2.50
+2,Metastability,NA,0.6086,NA,NA,Born Preterm**,NA
+3,Metastability,NA,0.0434,NA,NA,Born Preterm**,NA
+4,Metastability,NA,0.3896,NA,NA,Born Preterm**,NA
+5,Metastability,NA,0.053,NA,NA,Born Preterm**,NA
+6,Metastability,-4.255822462790138,1e-4,1e-4,p = 1e-04,Born Preterm**,-4.26
+1,Fractional Occupancy,-4.086030258616553,0,0,p < 0.001,Born Preterm**,-4.09
+2,Fractional Occupancy,3.3872710889174535,0.001,0.001,p = 0.001,Born Preterm**, 3.39
+3,Fractional Occupancy,NA,0.9876,NA,NA,Born Preterm**,NA
+4,Fractional Occupancy,2.163485923680152,0.0317,0.0317,p = 0.0317,Born Preterm**, 2.16
+5,Fractional Occupancy,NA,0.0472,NA,NA,Born Preterm**,NA
+6,Fractional Occupancy,2.727379602888854,0.0091,0.0091,p = 0.0091,Born Preterm**, 2.73
+1,Dwelling times,-4.639163311970281,0,0,p < 0.001,Born Preterm**,-4.64
+2,Dwelling times,NA,0.0361,NA,NA,Born Preterm**,NA
+3,Dwelling times,NA,0.0461,NA,NA,Born Preterm**,NA
+4,Dwelling times,NA,0.35,NA,NA,Born Preterm**,NA
+5,Dwelling times,NA,0.0807,NA,NA,Born Preterm**,NA
+6,Dwelling times,NA,0.5473,NA,NA,Born Preterm**,NA

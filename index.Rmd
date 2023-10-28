@@ -13,8 +13,6 @@ output:
     css: 'src/style.css'
   bookdown::word_document2:
     number_sections: false
-bibliography: references.bib
-csl: harvard-cite-them-right-no-et-al.csl
 editor_options:
   chunk_output_type: console
 params:
@@ -82,15 +80,23 @@ imd_tab <- readxl::read_xlsx(path = 'data/imd_pat.xlsx')
 
 names(imd_tab) <- c('participant_id', 'age_m', 'age_d', 'cor_age_m', 'cor_age_d', 'imd')
 
+imd_tab$imd[imd_tab$participant_id == 'CC00551XX07'] <- 9612
+imd_tab$imd[imd_tab$participant_id == 'CC00956XX16'] <- 27951
+
 imd_tab <- imd_tab %>% 
   dplyr::rename('sub' = 'participant_id') %>% 
   dplyr::mutate(age = age_m + (1/30*age_d), 
                 cor_age = cor_age_m + (1/30*cor_age_d)) %>% 
-  dplyr::select(sub, age, cor_age)
+  dplyr::select(sub, age, cor_age, imd)
 
 temp <- temp %>% 
   dplyr::left_join(imd_tab)
   
+
+temp %>% 
+  dplyr::group_by(pt) %>% 
+  summarise(min_imd = min(imd, na.rm = TRUE), 
+            max_imd = max(imd, na.rm = TRUE))
 
 temp %>% 
   dplyr::group_by(pt) %>% 
@@ -108,13 +114,13 @@ temp %>%
             sd_qchat = sd(qchat_total, na.rm = TRUE)) %>% 
   View()
 
-wilcox_test(cor_age ~ pt, data=temp, distribution = "exact")
-wilcox_test(age ~ pt, data=temp, distribution = "exact")
-wilcox_test(cog_comp ~ pt, data=temp, distribution = "exact")
-wilcox_test(motor_comp ~ pt, data=temp, distribution = "exact")
-wilcox_test(language_comp ~ pt, data=temp, distribution = "exact")
-wilcox_test(qchat_total ~ pt, data=temp, distribution = "exact")
-
+coin::wilcox_test(cor_age ~ pt, data=temp, distribution = "exact")
+coin::wilcox_test(age ~ pt, data=temp, distribution = "exact")
+coin::wilcox_test(cog_comp ~ pt, data=temp, distribution = "exact")
+coin::wilcox_test(motor_comp ~ pt, data=temp, distribution = "exact")
+coin::wilcox_test(language_comp ~ pt, data=temp, distribution = "exact")
+coin::wilcox_test(qchat_total ~ pt, data=temp, distribution = "exact")
+coin::wilcox_test(imd ~ pt, data=temp, distribution = "exact")
 
 temp %>% 
   filter(!is.na(cog_comp))  %>%
@@ -157,6 +163,9 @@ knitr::read_chunk('src/modular_routines.R')
 ```{r}
 imd_tab <- readxl::read_xlsx(path = 'data/imd_pat.xlsx')
 names(imd_tab) <- c('sub', 'age_m', 'age_d', 'cor_age_m', 'cor_age_d', 'imd')
+
+imd_tab$imd[imd_tab$sub == 'CC00551XX07'] <- 9612
+imd_tab$imd[imd_tab$sub == 'CC00956XX16'] <- 27951
 
 kop_b <- dfm %>% 
   dplyr::group_by(sub, 
@@ -230,6 +239,22 @@ kop_comp <- dplyr::bind_rows(kop_cog %>%
 sync_res <- glm(data = kop_b, formula = meanSync ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + imd)
 qchat_res <- glm(data = kop_b, formula = qchat_total ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + imd)
 
+kop_b_filt_term <- kop_b %>% 
+  dplyr::filter(pt == 'Term')
+
+kop_b_filt_pterm <- kop_b %>% 
+  dplyr::filter(pt == 'Preterm')
+
+kop_b %>% 
+  
+  ggplot2::ggplot(aes(x = qchat_total, y = meanSync)) + 
+    geom_point(aes(fill = pt), 
+             size = 4, 
+             pch = 21, 
+             colour = 'white') + 
+    scale_fill_manual(values = c(mypal2, 
+                                 mypal2))
+
 fit_godness <- tibble::tibble(sync = sync_res$residuals, 
                qchat = qchat_res$residuals) %>% 
     lm(., formula = sync ~ qchat) %>% 
@@ -246,7 +271,7 @@ kop_qchat_fig <- tibble::tibble(sync = sync_res$residuals,
   ggplot2::ggplot(aes(x = qchat, y = sync)) + 
     geom_point(aes(fill = pt, 
                    colour = pt), 
-                   size = 3, 
+                   #size = 3, 
                    pch = 21, 
                    size = 2, 
                    alpha = 0.4) + 
@@ -254,7 +279,6 @@ kop_qchat_fig <- tibble::tibble(sync = sync_res$residuals,
                     name = element_blank()) + 
     scale_colour_manual(values = scales2[c(2,10)], 
                     name = element_blank()) + 
-    #geom_abline(slope = kop_qchat$estimate[7]) + 
     stat_poly_line(colour = 'black', se = FALSE) + 
     stat_poly_eq(p.digits = 3, 
                  
@@ -265,6 +289,59 @@ kop_qchat_fig <- tibble::tibble(sync = sync_res$residuals,
     theme(legend.position = c(0.9, 0.9), 
           legend.background = element_blank(), 
           text = element_text(size = 24))
+
+
+
+## PvT
+
+sync_res_term <- glm(data = kop_b %>% dplyr::filter(pt == 'Term'), 
+                     formula = meanSync ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + imd)
+qchat_res_term  <- glm(data = kop_b %>% dplyr::filter(pt == 'Term'), 
+                       formula = qchat_total ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + imd)
+
+sync_res_preterm <- glm(data = kop_b %>% dplyr::filter(pt == 'Preterm'), 
+                     formula = meanSync ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + imd)
+qchat_res_preterm  <- glm(data = kop_b %>% dplyr::filter(pt == 'Preterm'), 
+                       formula = qchat_total ~ ga + pma + sex + motparam_fd_outlier_count + cor_age + imd)
+
+sync_res_merge_residuals <- c(sync_res_term$residuals, sync_res_preterm$residuals)
+qchat_res_merge_residuals <- c(qchat_res_term$residuals, qchat_res_preterm$residuals)
+
+sync_res_merge <- rbind(sync_res_term$model, sync_res_preterm$model)
+
+
+kop_qchat_fig_pvt <- tibble::tibble(sync = sync_res$residuals, 
+       qchat = qchat_res$residuals, 
+       sync_res$model) %>% 
+  dplyr::mutate(pt = dplyr::if_else(ga < 37, 'Preterm', 'Term')) %>% 
+  dplyr::mutate(pt = relevel(as.factor(pt), ref = 'Term')) %>% 
+  
+  ggplot2::ggplot(aes(x = qchat, y = sync)) + 
+    geom_point(aes(fill = pt, 
+                   colour = pt), 
+                   #size = 3, 
+                   pch = 21, 
+                   size = 3, 
+                   alpha = 0.4) + 
+    scale_fill_manual(values = scales2[c(2,10)], 
+                    name = element_blank()) + 
+    scale_colour_manual(values = scales2[c(2,10)], 
+                    name = element_blank()) + 
+    stat_poly_line(aes(colour = pt), se = FALSE) + 
+    stat_poly_eq(p.digits = 3, 
+                 
+                 aes(label = paste(after_stat(rr.label), "*\" - \"*",
+                                   after_stat(p.value.label), sep = ""), 
+                     colour = pt)) + 
+    xlab('Res(Q-CHAT total)') + 
+    ylab('Res(Mean sync.)') + 
+    theme(legend.position = c(0.9, 0.9), 
+          legend.background = element_blank(), 
+          text = element_text(size = 24))
+
+
+cowplot::plot_grid(kop_qchat_fig, kop_qchat_fig_pvt, labels = c('a', 'b'))
+
 ```
 
 
@@ -273,6 +350,19 @@ kop_qchat_fig <- tibble::tibble(sync = sync_res$residuals,
 kop_mean <- dfm %>% 
   dplyr::group_by(sub, pma, ga, pt, ensembleMetastab, ensembleEntropy) %>% 
   dplyr::summarise(meanSync = mean(ensembleSync))
+```
+
+```{r}
+dfm %>% 
+  dplyr::group_by(sub, pma, ga, pt, ensembleMetastab) %>% 
+  dplyr::summarise(meanSync = mean(ensembleSync)) %>% 
+  readr::write_csv(file = 'fig_data/Fig1a.csv')
+
+dfm %>% 
+  dplyr::group_by(sub, pma, ga, pt, ensembleMetastab) %>% 
+  dplyr::summarise(meanSync = mean(ensembleSync), 
+                   meanMetastab = mean(ensembleMetastab)) %>% 
+  readr::write_csv(file = 'fig_data/Fig1b.csv')
 ```
 
 
@@ -355,6 +445,13 @@ stats::p.adjust(c(meanSync_glm$p.perm[2], metastab_glm$p.perm[2], entropy_glm$p.
 #| fig.cap="Brain states in neonates at resting state. a) LEiDA vectors for each of the eight brain states previously defined in this study. b) Representation of LEiDA on brain surfaces."
 ```
 
+```{r}
+centr %>%
+  dplyr::mutate(across(ctr, factor, levels = negativity$ctr, labels = negativity$lab)) %>% 
+  readr::write_csv(file = 'fig_data/Fig2.csv')
+```
+
+
 ```{r stateRecode, include=FALSE}
 ```
 
@@ -394,7 +491,7 @@ stats::p.adjust(c(meanSync_glm$p.perm[2], metastab_glm$p.perm[2], entropy_glm$p.
 #| fig.cap="."
 ```
 
-```{r phocs, echo=FALSE}
+```{r phocs, eval=FALSE, include=FALSE}
 #| fig.align='center', 
 #| fig.height=10,
 #| fig.width=10,
@@ -402,7 +499,6 @@ stats::p.adjust(c(meanSync_glm$p.perm[2], metastab_glm$p.perm[2], entropy_glm$p.
 #| message=FALSE,
 #| warning=FALSE,
 #| echo=FALSE,
-#| eval=TRUE,
 #| fig.cap="."
 ```
 
@@ -425,6 +521,16 @@ stats::p.adjust(c(meanSync_glm$p.perm[2], metastab_glm$p.perm[2], entropy_glm$p.
 #| fig.cap="Mean transition likelihood for individuals born at term."
 ```
 
+```{r}
+main_net %>% readr::write_csv(file = 'fig_data/Fig3a.csv')
+allTransitions %>% 
+  tidyr::unnest(data) %>% 
+  dplyr::group_by(source, target, tag) %>% 
+  dplyr::summarise(nCount = mean(nCount)) %>% 
+  dplyr::ungroup() %>% 
+  readr::write_csv(file = 'fig_data/Fig3b.csv')
+```
+
 ```{r modelsTerm, echo=FALSE}
 #| echo=FALSE, 
 #| fig.height=15, 
@@ -434,6 +540,32 @@ stats::p.adjust(c(meanSync_glm$p.perm[2], metastab_glm$p.perm[2], entropy_glm$p.
 #| message=FALSE, 
 #| warning=FALSE, 
 #| fig.cap="Modular analysis of neonatal brain dynamics. a) Eight brain states defined via K-Means clustering and correlation between each clinical feature of interest (Born Preterm, PMA, PND) and metric (Mean KOP, Metastability, FO, DT). FO and DT show correlations with prematurity and PMA for several brain states - these have higher occurrence with increased PMA for state 4 (and lower FO for state 2). FO also shows correlation with PND - with higher measures for states 0, 2, and 5 for increased PND. b) Correlation between state transitions probabilities and PMA - with positive correlation with transitions to state 4 from states 0, 2, and 5, and dwelling states. c) Correlation between state transition probabilities and PND - which feature positive correlation with a dwelling state 4 and transition from state 3 to state 0; and a negative correlation with transitions from state 0 to state 3. e) Correlation between state transition probabilities and prematurity - featuring positive correlations for a dwelling state 6; and negative correlations for transitions of the states 3 to 7, 5 to 7, and 6 to 1. *GLMI (including 276 were term-born babies): y ~ motion artefact + Sex + PMA + PND **GLM2 (including 328 babies, 276 term-born and 52 preterm-born): y ~ Motion Artefact + Sex + PMA + Born Preterm"
+```
+
+```{r}
+models_term %>% 
+  dplyr::mutate(for.t = as.character(format(round(filt.t, 2), nsmall = 2))) %>% 
+  dplyr::mutate(for.t = dplyr::if_else(is.na(filt.t), NA_character_, for.t)) %>% 
+  dplyr::filter(term == 'PMA*') %>% 
+  dplyr::mutate(var = dplyr::recode(var, 'Mean KOP' = 'Mean synchronisation')) %>% 
+  readr::write_csv(file = 'fig_data/Fig3c.csv')
+
+models_term %>% 
+  dplyr::mutate(for.t = as.character(format(round(filt.t, 2), nsmall = 2))) %>% 
+  dplyr::mutate(for.t = dplyr::if_else(is.na(filt.t), NA_character_, for.t)) %>% 
+  dplyr::filter(term == 'PND*') %>% 
+  dplyr::mutate(var = dplyr::recode(var, 'Mean KOP' = 'Mean synchronisation')) %>% 
+  readr::write_csv(file = 'fig_data/Fig3d.csv')
+```
+
+```{r}
+allTransitionsCA %>% 
+  dplyr::filter(term == 'PMA') %>% 
+  readr::write_csv(file = 'fig_data/Fig3e.csv')
+
+allTransitionsCA %>% 
+  dplyr::filter(term == 'Postnatal days') %>% 
+  readr::write_csv(file = 'fig_data/Fig3f.csv')
 ```
 
 ```{r eval=FALSE, include=FALSE}
@@ -451,6 +583,35 @@ stats::p.adjust(c(meanSync_glm$p.perm[2], metastab_glm$p.perm[2], entropy_glm$p.
 #| fig.cap="Modular analysis of neonatal brain dynamics. a) Eight brain states defined via K-Means clustering and correlation between each clinical feature of interest (Born Preterm, PMA, PND) and metric (Mean KOP, Metastability, FO, DT). FO and DT show correlations with prematurity and PMA for several brain states - these have higher occurrence with increased PMA for state 4 (and lower FO for state 2). FO also shows correlation with PND - with higher measures for states 0, 2, and 5 for increased PND. b) Correlation between state transitions probabilities and PMA - with positive correlation with transitions to state 4 from states 0, 2, and 5, and dwelling states. c) Correlation between state transition probabilities and PND - which feature positive correlation with a dwelling state 4 and transition from state 3 to state 0; and a negative correlation with transitions from state 0 to state 3. e) Correlation between state transition probabilities and prematurity - featuring positive correlations for a dwelling state 6; and negative correlations for transitions of the states 3 to 7, 5 to 7, and 6 to 1. *GLMI (including 276 were term-born babies): y ~ motion artefact + Sex + PMA + PND **GLM2 (including 328 babies, 276 term-born and 52 preterm-born): y ~ Motion Artefact + Sex + PMA + Born Preterm"
 ```
 
+```{r}
+kop_long %>% 
+  dplyr::filter(measure == 'Mean dwelling time') %>% 
+  readr::write_csv(file = 'fig_data/Fig4a.csv')
+
+kop_long %>% 
+  dplyr::filter(measure == 'Mean fractional occupancy') %>% 
+  readr::write_csv(file = 'fig_data/Fig4b.csv')
+
+kop_long %>% 
+  dplyr::filter(measure == 'Mean KOP') %>% 
+  readr::write_csv(file = 'fig_data/Fig4c.csv')
+
+kop_long %>% 
+  dplyr::filter(measure == 'Mean metastability') %>% 
+  readr::write_csv(file = 'fig_data/Fig4d.csv')
+
+models %>% 
+  dplyr::mutate(for.t = as.character(format(round(filt.t, 2), nsmall = 2))) %>% 
+  dplyr::mutate(for.t = dplyr::if_else(is.na(filt.t), NA_character_, for.t)) %>% 
+  dplyr::filter(term == 'Born Preterm**') %>% 
+  dplyr::mutate(var = dplyr::recode(var, 'Mean KOP' = 'Mean synchronisation')) %>% 
+  readr::write_csv(file = 'fig_data/Fig4e.csv')
+
+allTransitionsPT %>% 
+  dplyr::filter(term == 'Preterm-born') %>% 
+  readr::write_csv(file = 'fig_data/Fig4f.csv')
+```
+
 ```{r bayley, echo=FALSE}
 #| echo=FALSE, 
 #| fig.height=5, 
@@ -458,13 +619,28 @@ stats::p.adjust(c(meanSync_glm$p.perm[2], metastab_glm$p.perm[2], entropy_glm$p.
 #| dev='pdf',
 #| message=FALSE, 
 #| warning=FALSE, 
-#| cache=TRUE, 
+#| cache=FALSE, 
 #| fig.cap="Modular"
 ```
 
+```{r}
+dplyr::bind_rows(bl_ttests_fo_cog, 
+                 bl_ttests_fo_language, 
+                 bl_ttests_fo_motor, 
+                 bl_ttests_fo_qchat) %>% 
+  readr::write_csv(file = 'fig_data/Fig5a.csv')
+
+dplyr::bind_rows(bl_ttests_kop_cog, 
+                 bl_ttests_kop_language, 
+                 bl_ttests_kop_motor, 
+                 bl_ttests_kop_qchat) %>% 
+  readr::write_csv(file = 'fig_data/Fig5b.csv')
+```
+
+
 # Supplementary
 
-```{r flowchart}
+```{r flowchart, eval=FALSE, include=FALSE}
 #| fig.align='center', 
 #| fig.height=6,
 #| fig.width=10,

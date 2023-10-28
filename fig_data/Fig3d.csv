@@ -1,0 +1,25 @@
+cluster,var,filt.t,p.perm,filt.p,pp.for,term,for.t
+1,Mean synchronisation,NA,0.7527,NA,NA,PND*,NA
+2,Mean synchronisation,NA,0.3193,NA,NA,PND*,NA
+3,Mean synchronisation,NA,0.6183,NA,NA,PND*,NA
+4,Mean synchronisation,NA,0.2325,NA,NA,PND*,NA
+5,Mean synchronisation,NA,0.2583,NA,NA,PND*,NA
+6,Mean synchronisation,NA,0.863,NA,NA,PND*,NA
+1,Metastability,NA,1,NA,NA,PND*,NA
+2,Metastability,NA,1,NA,NA,PND*,NA
+3,Metastability,NA,1,NA,NA,PND*,NA
+4,Metastability,NA,1,NA,NA,PND*,NA
+5,Metastability,NA,1,NA,NA,PND*,NA
+6,Metastability,NA,1,NA,NA,PND*,NA
+1,Fractional Occupancy,NA,0.236,NA,NA,PND*,NA
+2,Fractional Occupancy,NA,0.018,NA,NA,PND*,NA
+3,Fractional Occupancy,NA,0.009,NA,NA,PND*,NA
+4,Fractional Occupancy,NA,0.1395,NA,NA,PND*,NA
+5,Fractional Occupancy,NA,0.0378,NA,NA,PND*,NA
+6,Fractional Occupancy,NA,0.3335,NA,NA,PND*,NA
+1,Dwelling times,NA,0.5587,NA,NA,PND*,NA
+2,Dwelling times,NA,0.0953,NA,NA,PND*,NA
+3,Dwelling times,-3.4697832672405022,2e-4,2e-4,p = 2e-04,PND*,-3.47
+4,Dwelling times,-2.497561384513634,0.0126,0.0126,p = 0.0126,PND*,-2.50
+5,Dwelling times,-2.7760163402860787,0.0064,0.0064,p = 0.0064,PND*,-2.78
+6,Dwelling times,NA,0.0348,NA,NA,PND*,NA

@@ -6,7 +6,7 @@ services:
     build:
       context: ./rstudio
     ports:
-      - "8787:8787"
+      - "8788:8787"
     volumes:
           - "~/.ssh:/home/rstudio/.ssh"
           - ".:/home/rstudio/neonatal_dfc"
@@ -15,3 +15,6 @@ services:
           - "./report:/home/rstudio/neonatal_dfc/report"
     environment:
           - PASSWORD=letmein
+          - ROOT=true
+          - USERID=1001
+          - GROUPID=1001

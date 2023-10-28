@@ -19,42 +19,31 @@ RUN apt-get update && \
     gcc && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN install2.r -e cowplot \
-    janitor \
-    kableExtra \
-    ggExtra \
-    rjson \
-    broom.mixed \
-    plotly \
-    ggsci \
-    shadowtext \
-    effsize \
-    ggimage \
-    ggpubr \
-    modelsummary \
-    cowplot \
-    RColorBrewer \
-    kableExtra \
-    rjson \
-    broom \
-    plotly \
-    ggsci \
-    shadowtext \
-    effsize \
-    ggimage \
-    ggpubr \
-    patchwork \
-    modelsummary \
-    ggbeeswarm \
-    reshape2
 
-RUN install2.r -s --error \
-    tidymodels \
-    ggtext \
-    lmerTest \
-    gt \
-    ggpmisc \
-    ggforce
+
+RUN R -e "install.packages('cowplot',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('janitor',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('kableExtra',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('ggExtra',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('rjson',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('broom.mixed',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('plotly',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('ggsci',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('shadowtext',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('effsize',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('ggimage',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('ggpubr',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('modelsummary',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('RColorBrewer',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('patchwork',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('ggbeeswarm',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('reshape2',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('tidymodels',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('ggtext',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('lmerTest',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('gt',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('ggpmisc',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('ggforce',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 
 RUN Rscript -e "remotes::install_github('LCBC-UiO/ggseg', build_vignettes = FALSE)"
 RUN Rscript -e "remotes::install_github('LCBC-UiO/ggseg3d', build_vignettes = FALSE)"
