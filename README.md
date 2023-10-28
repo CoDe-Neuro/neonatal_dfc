@@ -1,6 +1,8 @@
 # Neonatal brain dynamic functional connectivity in term and preterm infants and its association with early childhood neurodevelopment
 
 ![GitHub](https://img.shields.io/github/license/CoDe-Neuro/neonatal_dfc)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10050537.svg)](https://doi.org/10.5281/zenodo.10050537)
+
 
 ## Download
 
