@@ -1,4 +1,4 @@
-# Neonatal brain dynamic functional connectivity: impact of preterm birth and association with early childhood neurodevelopment
+# Neonatal brain dynamic functional connectivity in term and preterm infants and its association with early childhood neurodevelopment
 
 ![GitHub](https://img.shields.io/github/license/CoDe-Neuro/neonatal_dfc)
 
